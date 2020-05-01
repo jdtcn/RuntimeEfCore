@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "RuntimeEfCore": {
+      "commandName": "Project"
+    }
+  }
+}
