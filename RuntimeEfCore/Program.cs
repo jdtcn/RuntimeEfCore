@@ -77,7 +77,7 @@ namespace RuntimeEfCore
 
             foreach (var entityType in dynamicContext.Model.GetEntityTypes())
             {
-                var items = (IEnumerable<object>)dynamicContext.Query(entityType.Name);
+                var items = (IQueryable<object>)dynamicContext.Query(entityType.Name);
 
                 Console.WriteLine($"Entity type: {entityType.ClrType.Name} contains {items.Count()} items");
             }
