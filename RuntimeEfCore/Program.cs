@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using System.Diagnostics.CodeAnalysis;
 
 namespace RuntimeEfCore
 {
@@ -90,6 +91,7 @@ namespace RuntimeEfCore
             }
         }
 
+        [SuppressMessage("Usage", "EF1001:Internal EF Core API usage.", Justification = "We need it")]
         static IReverseEngineerScaffolder CreateMssqlScaffolder() =>
             new ServiceCollection()
                .AddEntityFrameworkSqlServer()

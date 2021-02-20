@@ -12,7 +12,7 @@ This sample project demonstrates how to:
 
 # Prerequisites
 
-We need NET Core 3.1.3.
+We need NET Core 3.1.3 (or greater, tested  with 5.0, 6.0).
 
 This program uses the MS SQL database, we need a connection string. However, the approach itself works for any database engine supported by EF Core (I tested sqlite and postregs).
 
