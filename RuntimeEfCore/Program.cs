@@ -104,6 +104,8 @@ namespace RuntimeEfCore
                .AddSingleton<IProviderConfigurationCodeGenerator, SqlServerCodeGenerator>()
                .AddSingleton<IScaffoldingModelFactory, RelationalScaffoldingModelFactory>()
                .AddSingleton<IPluralizer, Bricelam.EntityFrameworkCore.Design.Pluralizer>()
+               .AddSingleton<ProviderCodeGeneratorDependencies>()
+               .AddSingleton<AnnotationCodeGeneratorDependencies>()
                .BuildServiceProvider()
                .GetRequiredService<IReverseEngineerScaffolder>();
 
