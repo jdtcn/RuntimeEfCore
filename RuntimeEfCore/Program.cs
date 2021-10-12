@@ -53,7 +53,7 @@ namespace RuntimeEfCore
             if (!result.Success)
             {
                 var failures = result.Diagnostics
-                    .Where(diagnostic => diagnostic.IsWarningAsError || 
+                    .Where(diagnostic => diagnostic.IsWarningAsError ||
                                          diagnostic.Severity == DiagnosticSeverity.Error);
 
                 var error = failures.FirstOrDefault();
@@ -80,7 +80,7 @@ namespace RuntimeEfCore
             {
                 var items = (IQueryable<object>)dynamicContext.Query(entityType.Name);
 
-                Console.WriteLine($"Entity type: {entityType.ClrType.Name} contains {items.Count()} items");
+                Console.WriteLine($"Entity type: {entityType.Name} contains {items.Count()} items");
             }
 
             Console.ReadKey();
@@ -147,14 +147,14 @@ namespace RuntimeEfCore
     public static class DynamicContextExtensions
     {
         public static IQueryable Query(this DbContext context, string entityName) =>
-            context.Query(context.Model.FindEntityType(entityName).ClrType);
+            context.Query(entityName, context.Model.FindEntityType(entityName).ClrType);
 
         static readonly MethodInfo SetMethod =
-            typeof(DbContext).GetMethod(nameof(DbContext.Set), 1, Array.Empty<Type>()) ??
+            typeof(DbContext).GetMethod(nameof(DbContext.Set), 1, new[] { typeof(string) }) ??
             throw new Exception($"Type not found: DbContext.Set");
 
-        public static IQueryable Query(this DbContext context, Type entityType) =>
-            (IQueryable)SetMethod.MakeGenericMethod(entityType)?.Invoke(context, null) ??
+        public static IQueryable Query(this DbContext context, string entityName, Type entityType) =>
+            (IQueryable)SetMethod.MakeGenericMethod(entityType)?.Invoke(context, new[] { entityName }) ??
             throw new Exception($"Type not found: {entityType.FullName}");
     }
 }
