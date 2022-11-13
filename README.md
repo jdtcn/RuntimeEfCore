@@ -41,15 +41,15 @@ Let's create a console application, add the necessary packages to it:
 The code generator is in the package `Microsoft.EntityFrameworkCore.Design`. If you install this package through the package manager console, the following code will be added to your * .csproj:
 
 ```xml
-<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0">
-  <PrivateAssets>all</PrivateAssets>
-</PackageReference>
+<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0" />
 ```
 
 This code tells [1] that the package is needed only during development, and is not used in runtime. We will need it in runtime, so we need to import the package like this:
 
 ```xml
-<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0" />
+<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0">
+  <PrivateAssets>all</PrivateAssets>
+</PackageReference>
 ```
 
 # 1. Code generation
