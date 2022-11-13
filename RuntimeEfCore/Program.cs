@@ -117,6 +117,7 @@ namespace RuntimeEfCore
             refs.AddRange(referencedAssemblies.Select(a => MetadataReference.CreateFromFile(Assembly.Load(a).Location)));
 
             refs.Add(MetadataReference.CreateFromFile(typeof(object).Assembly.Location));
+            refs.Add(MetadataReference.CreateFromFile(typeof(BackingFieldAttribute).Assembly.Location));
             refs.Add(MetadataReference.CreateFromFile(Assembly.Load("netstandard, Version=2.0.0.0").Location));
             refs.Add(MetadataReference.CreateFromFile(typeof(System.Data.Common.DbConnection).Assembly.Location));
             refs.Add(MetadataReference.CreateFromFile(typeof(System.Linq.Expressions.Expression).Assembly.Location));
@@ -131,7 +132,7 @@ namespace RuntimeEfCore
 
         private static CSharpCompilation GenerateCode(List<string> sourceFiles, bool enableLazyLoading)
         {
-            var options = CSharpParseOptions.Default.WithLanguageVersion(LanguageVersion.CSharp8);
+            var options = CSharpParseOptions.Default.WithLanguageVersion(LanguageVersion.CSharp10);
 
             var parsedSyntaxTrees = sourceFiles.Select(f => SyntaxFactory.ParseSyntaxTree(f, options));
 

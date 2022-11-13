@@ -12,7 +12,7 @@ This sample project demonstrates how to:
 
 # Prerequisites
 
-We need NET Core 3.1.3 (or greater, tested  with 5.0, 6.0).
+We need NET 7.0 (or 3.1, 5.0, 6.0).
 
 This program uses the MS SQL database, we need a connection string. However, the approach itself works for any database engine supported by EF Core (I tested sqlite and postregs).
 
@@ -23,17 +23,17 @@ Let's create a console application, add the necessary packages to it:
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
   
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.5.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
-    <PackageReference Include="Bricelam.EntityFrameworkCore.Pluralizer" Version="1.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis" Version="4.3.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="7.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />
+		<PackageReference Include="Bricelam.EntityFrameworkCore.Pluralizer" Version="1.0.0" />
+	</ItemGroup>
 
 </Project>
 ```
@@ -41,16 +41,15 @@ Let's create a console application, add the necessary packages to it:
 The code generator is in the package `Microsoft.EntityFrameworkCore.Design`. If you install this package through the package manager console, the following code will be added to your * .csproj:
 
 ```xml
-<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.3">
+<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0">
   <PrivateAssets>all</PrivateAssets>
-  <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
 </PackageReference>
 ```
 
 This code tells [1] that the package is needed only during development, and is not used in runtime. We will need it in runtime, so we need to import the package like this:
 
 ```xml
-<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.3" />
+<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0" />
 ```
 
 # 1. Code generation
